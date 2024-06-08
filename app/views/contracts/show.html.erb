@@ -1,0 +1,29 @@
+<h1>Contract Analysis</h1>
+<p>
+  <strong>Analysis:</strong>
+  <%= @contract.analysis %>
+</p>
+<p>
+  <strong>Summary:</strong>
+  <%= @contract.summary %>
+</p>
+
+<h2>Risks</h2>
+<ul>
+  <% @contract.risks.each do |risk| %>
+    <li><%= risk.description %> - <%= risk.level %></li>
+  <% end %>
+</ul>
+
+<h2>Lawyer Suggestions</h2>
+<ul>
+  <% @suggestions.each do |suggestion| %>
+    <li>
+      <strong><%= suggestion.lawyer.name %></strong>
+      (<%= suggestion.lawyer.specialization %>)
+      - <%= suggestion.lawyer.contact_details %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', contracts_path %>

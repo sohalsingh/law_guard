@@ -1,15 +1,20 @@
 Rails.application.routes.draw do
+  # Admin Interface
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
+  # User Authentication
   devise_for :users
-  resources :contracts, only: [:new, :create, :show] do
+  
+  # Contract Resource with Analyze Action
+  resources :contracts do
     member do
-      post :analyze
+      post 'analyze'
     end
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-   root to: "home#index"
+  
+  # Suggestion Resource
+  resources :suggestions, only: [:index, :show, :new, :create]
+  
+  # Root Path
+  root to: "home#index"
 end

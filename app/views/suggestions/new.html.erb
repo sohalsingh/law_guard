@@ -1,0 +1,15 @@
+<h1>New Suggestion</h1>
+<%= form_with model: @suggestion, local: true do |form| %>
+  <div>
+    <%= form.label :risk_id %>
+    <%= form.collection_select :risk_id, @risks, :id, :description %>
+  </div>
+  <div>
+    <%= form.label :lawyer_id %>
+    <%= form.collection_select :lawyer_id, @lawyers, :id, :name %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', suggestions_path %>

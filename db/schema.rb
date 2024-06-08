@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_07_033642) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_08_035908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,7 +56,32 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_033642) do
     t.string "file_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "summary"
     t.index ["user_id"], name: "index_contracts_on_user_id"
+  end
+
+  create_table "lawyers", force: :cascade do |t|
+    t.string "name"
+    t.string "specialization"
+    t.string "contact_details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "risks", force: :cascade do |t|
+    t.string "description"
+    t.string "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.bigint "risk_id", null: false
+    t.bigint "lawyer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lawyer_id"], name: "index_suggestions_on_lawyer_id"
+    t.index ["risk_id"], name: "index_suggestions_on_risk_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,4 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_07_033642) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "analysis_results", "contracts"
   add_foreign_key "contracts", "users"
+  add_foreign_key "suggestions", "lawyers"
+  add_foreign_key "suggestions", "risks"
 end

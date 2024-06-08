@@ -1,0 +1,10 @@
+<h1>Suggestion</h1>
+<p>
+  <strong>Risk:</strong>
+  <%= @suggestion.risk.description %>
+</p>
+<p>
+  <strong>Lawyer:</strong>
+  <%= @suggestion.lawyer.name %>
+</p>
+<%= link_to 'Back', suggestions_path %>

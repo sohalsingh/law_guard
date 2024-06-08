@@ -1,0 +1,20 @@
+<h1>Suggestions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Risk</th>
+      <th>Lawyer</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @suggestions.each do |suggestion| %>
+      <tr>
+        <td><%= suggestion.risk.description %></td>
+        <td><%= suggestion.lawyer.name %></td>
+        <td><%= link_to 'Show', suggestion %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to 'New Suggestion', new_suggestion_path %>
