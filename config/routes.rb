@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   # User Authentication
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
   
   # Contract Resource with Analyze Action
   resources :contracts do
@@ -17,4 +19,11 @@ Rails.application.routes.draw do
   
   # Root Path
   root to: "home#index"
+
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index]
+    end
+  end
+  
 end

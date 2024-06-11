@@ -1,4 +1,4 @@
-class ContractsController < ApplicationController
+ class ContractsController < ApplicationController
   before_action :authenticate_user!
 
   def new

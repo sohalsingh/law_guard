@@ -76,3 +76,4 @@ gem "cssbundling-rails"
 gem "sassc-rails", require: false
 gem 'devise-tailwindcssed'
 gem 'httparty'
+gem 'rack-cors'
