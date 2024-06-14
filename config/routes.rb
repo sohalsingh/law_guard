@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
   # Admin Interface
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
@@ -18,7 +19,11 @@ Rails.application.routes.draw do
   resources :suggestions, only: [:index, :show, :new, :create]
   
   # Root Path
-  root to: "home#index"
+   root to: "home#index"
+ # root to: "welcome#index"
+  
+
+
 
   namespace :api do
     namespace :v1 do
